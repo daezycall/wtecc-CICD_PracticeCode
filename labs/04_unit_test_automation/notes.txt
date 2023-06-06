@@ -32,3 +32,6 @@ tkn pipeline start cd-pipeline \
     -p branch="main" \
     -w name=pipeline-workspace,claimName=pipelinerun-pvc \
     --showlog
+
+tkn pipelinerun ls
+tkn pipelinerun logs --last    
