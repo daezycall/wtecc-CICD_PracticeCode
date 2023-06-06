@@ -1,0 +1,11 @@
+tkn hub install task git-clone
+kubectl apply -f https://raw.githubusercontent.com/tektoncd/catalog/main/task/git-clone/0.9/git-clone.yaml
+tkn hub install task flake8
+kubectl apply -f tasks.yaml
+tkn task ls
+
+# You should see the buildah task in the list with all the other available ClusterTasks.
+tkn clustertask ls
+
+kubectl apply -f pipeline.yaml
+kubectl apply -f pvc.yaml
