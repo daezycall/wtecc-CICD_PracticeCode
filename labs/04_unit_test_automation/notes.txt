@@ -25,3 +25,10 @@ pip install -r requirements.txt
 nosetests -v --with-spec --spec-color
 
 
+kubectl apply -f pipeline.yaml
+
+tkn pipeline start cd-pipeline \
+    -p repo-url="https://github.com/daezycall/wtecc-CICD_PracticeCode.git" \
+    -p branch="main" \
+    -w name=pipeline-workspace,claimName=pipelinerun-pvc \
+    --showlog
