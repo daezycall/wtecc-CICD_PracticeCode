@@ -16,3 +16,6 @@ tkn pipeline start cd-pipeline \
     -p build-image=image-registry.openshift-image-registry.svc:5000/$SN_ICR_NAMESPACE/tekton-lab:latest \
     -w name=pipeline-workspace,claimName=pipelinerun-pvc \
     --showlog
+
+tkn pipelinerun ls
+tkn pipelinerun logs --last
