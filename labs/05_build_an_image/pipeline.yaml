@@ -9,6 +9,7 @@ spec:
     - name: repo-url
     - name: branch
       default: master
+    - name: build-image      
   tasks:
     - name: init
       workspaces:
