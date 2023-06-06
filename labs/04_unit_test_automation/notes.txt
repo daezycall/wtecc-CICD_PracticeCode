@@ -1,0 +1,27 @@
+kubectl apply -f tasks.yaml
+tkn hub install task git-clone
+
+kubectl apply -f https://raw.githubusercontent.com/tektoncd/catalog/main/task/git-clone/0.9/git-clone.yaml
+tkn task ls
+
+kubectl apply -f pvc.yaml
+
+persistentvolumeclaim/pipelinerun-pvc created
+
+tkn hub install task flake8
+
+kubectl apply -f pipeline.yaml
+
+tkn pipeline start cd-pipeline \
+    -p repo-url="https://github.com/daezycall/wtecc-CICD_PracticeCode.git" \
+    -p branch="main" \
+    -w name=pipeline-workspace,claimName=pipelinerun-pvc \
+    --showlog
+
+#!/bin/bash
+set -e
+python -m pip install --upgrade pip wheel
+pip install -r requirements.txt
+nosetests -v --with-spec --spec-color
+
+
